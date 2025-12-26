@@ -1,16 +1,16 @@
 const User = require("../models/user.model")
 const LoginActivity = require("../models/loginactivity.model")
 
-const { getClientIP } = require("../utils/other/getClientIP")
-const { getLocationFromIP } = require("../utils/ip/ip")
-const { evaluateRisk } = require("../utils/fraud/fraud")
+const getClientIP = require("../utils/other/getClientIP")
+const getLocationFromIP = require("../utils/ip/ip")
+const evaluateRisk = require("../utils/fraud/fraud")
 
 const {
     CreateLoginResDTO
 } = require("../dtos/auth.dto")
 
 class AuthService {
-    static async login(email, password) {
+    static async login(email, password, req) {
         const user = await User.findOne({ email });
         if (!user) {
             return res.status(401).json({ message: "Invalid login" });

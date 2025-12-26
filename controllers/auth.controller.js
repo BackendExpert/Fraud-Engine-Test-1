@@ -17,7 +17,8 @@ const AuthController = {
             
             const result = await AuthService.login(
                 dto.email,
-                dto.password
+                dto.password,
+                req
             )
 
             res.status(200).json(result)
